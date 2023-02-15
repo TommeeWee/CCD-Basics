@@ -1,0 +1,15 @@
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\bin\Debug\net6.0\CSVViewer.exe
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\bin\Debug\net6.0\CSVViewer.deps.json
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\bin\Debug\net6.0\CSVViewer.runtimeconfig.json
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\bin\Debug\net6.0\CSVViewer.dll
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\bin\Debug\net6.0\CSVViewer.pdb
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\obj\Debug\net6.0\CSVViewer.csproj.AssemblyReference.cache
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\obj\Debug\net6.0\CSVViewer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\obj\Debug\net6.0\CSVViewer.AssemblyInfoInputs.cache
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\obj\Debug\net6.0\CSVViewer.AssemblyInfo.cs
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\obj\Debug\net6.0\CSVViewer.csproj.CoreCompileInputs.cache
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\obj\Debug\net6.0\CSVViewer.dll
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\obj\Debug\net6.0\refint\CSVViewer.dll
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\obj\Debug\net6.0\CSVViewer.pdb
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\obj\Debug\net6.0\CSVViewer.genruntimeconfig.cache
+C:\Users\tomwe\source\repos\CCD-Basics\CCDBasics\CSVViewer\obj\Debug\net6.0\ref\CSVViewer.dll

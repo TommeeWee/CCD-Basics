@@ -1,7 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using CSVViewer.Integration;
-using CSVViewer.Operation;
+using System.Text;
+using CSVViewer.Integrations;
+using CSVViewer.Operations;
 
 namespace CSVViewer;
 
@@ -19,14 +20,27 @@ public static class Program
         var seitenausgabe = new Seitenausgabe();
         
         var seitenanzeige = new CSVSeitenanzeige(dateiLeser, kopfzeilenextraktor, seitenextraktor, seitenausgabe);
+
+        var kommandos = new IEingabeKommando []
+        {
+            new FirstPageEingabeKommando(),
+            new PrevPageEingabeKommando(),
+            new NextPageEingabeKommando(),
+            new LastPageEingabeKommando(),
+            new ExitEingabeKommando()
+        };
         
+        var eingabeInterpreter = new EingabeInterpreter(kommandos);
+
+        var aktuelleSeite = 1;
+
+        do
+        {
+            seitenanzeige.ZeigeSeite(dateiname, aktuelleSeite);
+            eingabeInterpreter.ZeigeKommandos();
+            var kommando = eingabeInterpreter.NaechstesKommando();
+            aktuelleSeite = kommando.Ausfuehren(aktuelleSeite);
+        } while (aktuelleSeite > 0);
         
-        
-        seitenanzeige.ZeigeSeite(dateiname, 1);
-        Console.WriteLine();
-        seitenanzeige.ZeigeSeite(dateiname, 2);
-        Console.WriteLine();
-        seitenanzeige.ZeigeSeite(dateiname, 3);
-        Console.WriteLine();
     }
 }

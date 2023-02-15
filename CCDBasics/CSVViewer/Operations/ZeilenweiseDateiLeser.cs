@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace CSVViewer.Operation;
+namespace CSVViewer.Operations;
 
 public class ZeilenweiseDateiLeser : IDateiLeser
 {

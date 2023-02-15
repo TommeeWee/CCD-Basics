@@ -1,4 +1,4 @@
-namespace CSVViewer.Operation;
+namespace CSVViewer.Operations;
 
 public class Seitenextraktor : ISeitenextraktor
 {

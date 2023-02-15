@@ -1,4 +1,4 @@
-namespace CSVViewer.Integration;
+namespace CSVViewer.Integrations;
 
 public class CSVSeitenanzeige
 {
