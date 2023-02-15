@@ -1,4 +1,4 @@
-namespace CSVViewer;
+namespace CSVViewer.Operations;
 
 public interface IEingabeInterpreter
 {

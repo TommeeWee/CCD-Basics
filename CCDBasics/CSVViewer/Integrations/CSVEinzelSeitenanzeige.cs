@@ -1,13 +1,13 @@
 namespace CSVViewer.Integrations;
 
-public class CSVSeitenanzeige
+public class CSVEinzelSeitenanzeige
 {
     private readonly IDateiLeser _dateiLeser;
     private readonly IKopfzeilenExtraktor _kopfzeilenExtraktor;
     private readonly ISeitenextraktor _seitenextraktor;
     private readonly ISeitenausgabe _seitenausgabe;
 
-    public CSVSeitenanzeige(IDateiLeser dateiLeser, IKopfzeilenExtraktor kopfzeilenExtraktor, ISeitenextraktor seitenextraktor, ISeitenausgabe seitenausgabe)
+    public CSVEinzelSeitenanzeige(IDateiLeser dateiLeser, IKopfzeilenExtraktor kopfzeilenExtraktor, ISeitenextraktor seitenextraktor, ISeitenausgabe seitenausgabe)
     {
         _dateiLeser = dateiLeser;
         _kopfzeilenExtraktor = kopfzeilenExtraktor;

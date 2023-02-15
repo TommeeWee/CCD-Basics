@@ -1,4 +1,4 @@
-namespace CSVViewer;
+namespace CSVViewer.Operations;
 
 public class FirstPageEingabeKommando : IEingabeKommando
 {
@@ -7,7 +7,7 @@ public class FirstPageEingabeKommando : IEingabeKommando
     public char Eingabe => 'F';
     
     
-    public int Ausfuehren(int aktuelleSeite)
+    public int Ausfuehren(int aktuelleSeite, int seitenanzahl)
     {
         return 1;
     }

@@ -14,14 +14,36 @@ public static class Program
         var dateiname = kommandoZeilenArgumentManager.LeseDateinamen(args);
         var seitengroesse = kommandoZeilenArgumentManager.LeseSeitengroesse(args);
 
+        var seitenanzeige = ErstelleSeitenanzeige(seitengroesse);
+
+        var eingabeInterpreter = ErstelleEingabeInterpreter();
+
+        var aktuelleSeite = 1;
+        var seitenanzahl = 3;
+
+        while(aktuelleSeite > 0)
+        {
+            seitenanzeige.ZeigeSeite(dateiname, aktuelleSeite);
+            eingabeInterpreter.ZeigeKommandos();
+            var kommando = eingabeInterpreter.NaechstesKommando();
+            aktuelleSeite = kommando.Ausfuehren(aktuelleSeite, seitenanzahl);
+        }
+    }
+
+    private static CSVEinzelSeitenanzeige ErstelleSeitenanzeige(int seitengroesse)
+    {
         var dateiLeser = new ZeilenweiseDateiLeser();
         var kopfzeilenextraktor = new KopfzeilenExtraktor();
         var seitenextraktor = new Seitenextraktor(seitengroesse);
         var seitenausgabe = new Seitenausgabe();
-        
-        var seitenanzeige = new CSVSeitenanzeige(dateiLeser, kopfzeilenextraktor, seitenextraktor, seitenausgabe);
 
-        var kommandos = new IEingabeKommando []
+        var seitenanzeige = new CSVEinzelSeitenanzeige(dateiLeser, kopfzeilenextraktor, seitenextraktor, seitenausgabe);
+        return seitenanzeige;
+    }
+
+    private static EingabeInterpreter ErstelleEingabeInterpreter()
+    {
+        var kommandos = new IEingabeKommando[]
         {
             new FirstPageEingabeKommando(),
             new PrevPageEingabeKommando(),
@@ -29,18 +51,8 @@ public static class Program
             new LastPageEingabeKommando(),
             new ExitEingabeKommando()
         };
-        
+
         var eingabeInterpreter = new EingabeInterpreter(kommandos);
-
-        var aktuelleSeite = 1;
-
-        do
-        {
-            seitenanzeige.ZeigeSeite(dateiname, aktuelleSeite);
-            eingabeInterpreter.ZeigeKommandos();
-            var kommando = eingabeInterpreter.NaechstesKommando();
-            aktuelleSeite = kommando.Ausfuehren(aktuelleSeite);
-        } while (aktuelleSeite > 0);
-        
+        return eingabeInterpreter;
     }
 }
