@@ -14,18 +14,18 @@ public static class PageFormatter
         var columnLengths = GetColumnLengths(page);
 
         var formattedPage = string.Empty;
-        formattedPage += LineFormatter.Format(page.Header, columnLengths, FieldPadding, FieldDelimiter);
+        formattedPage = AppendLine(formattedPage, LineFormatter.Format(page.Header, columnLengths, FieldPadding, FieldDelimiter));
 
         var headerSeparator = CreateHeaderSeparator(page);
 
-        formattedPage += LineFormatter.Format(
+        formattedPage = AppendLine(formattedPage, LineFormatter.Format(
             headerSeparator,
             columnLengths,
             HeaderSeparationPadding,
-            HeaderSeparationDelimiter);
+            HeaderSeparationDelimiter));
 
         foreach (var line in page.Content)
-            formattedPage += LineFormatter.Format(line, columnLengths, FieldPadding, FieldDelimiter);
+            formattedPage = AppendLine(formattedPage, LineFormatter.Format(line, columnLengths, FieldPadding, FieldDelimiter));
 
         return formattedPage;
     }
@@ -57,5 +57,10 @@ public static class PageFormatter
             return headerLength;
 
         return maxColumnLength;
+    }
+
+    private static string AppendLine(string text, string newLine)
+    {
+        return text + newLine + Environment.NewLine;
     }
 }

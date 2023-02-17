@@ -11,7 +11,7 @@ public static class Program
         var fileName = CommandLineArgumentInterpreter.GetFileName(args);
         var pageSize = CommandLineArgumentInterpreter.GetPageSize(args);
 
-        var csvFileContent = CsvFileReader.Read(fileName);
+        var csvFileContent = CsvFileReader.ReadCsvLinesFromFile(fileName);
         var pageCount = PagingHelper.GetPageCount(csvFileContent, pageSize);
 
         var currentPage = 1;

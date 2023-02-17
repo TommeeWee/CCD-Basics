@@ -6,15 +6,37 @@ public static class CsvFileReader
 {
     private const char Delimiter = ';';
 
-    public static CsvLine[] Read(string fileName)
+    public static CsvLine[] ReadCsvLinesFromFile(string file)
     {
-        var lines = File.ReadLines(fileName);
+        var lines = ReadLinesFromFile(file);
+        return ConvertToCsvLines(lines);
+    }
+    
+    public static string[] ReadLinesFromFile(string fileName)
+    {
+        return File.ReadLines(fileName).ToArray();
+    }
+    
+    public static CsvLine[] ConvertToCsvLines(string[] lines)
+    {
+        var result = new CsvLine[lines.Length];
 
-        var result = new List<CsvLine>();
+        for (int i = 0; i < lines.Length; i++)
+            result[i] = ConvertToLine(i, lines[i]);
 
-        foreach (var line in lines)
-            result.Add(new CsvLine(line.Split(Delimiter)));
+        return result;
+    }
 
-        return result.ToArray();
+    private static CsvLine ConvertToLine(int rowNo, string line)
+    {
+        var formattedRowNo =  FormatHelper.FormatRowNo(rowNo);
+        var newLine = $"{formattedRowNo}{Delimiter}{line}";
+        return new CsvLine(GetFields(newLine));
+    }
+
+    private static string[] GetFields(string line)
+    {
+        return line.Split(Delimiter);
     }
 }
+
