@@ -3,12 +3,12 @@ namespace CSVViewer.Input;
 public class PrevPageInputInteractor : IInputInteractor
 {
     public string Caption => "P)revious page";
-    public char Eingabe => 'P';
+    public char Input => 'P';
 
-    public int Execute(int aktuelleSeite, int seitenanzahl)
+    public int Execute(int currentPage, int pageCount)
     {
-        if (aktuelleSeite > 1)
-            return aktuelleSeite - 1;
+        if (currentPage > 1)
+            return currentPage - 1;
         return 1;
     }
 }

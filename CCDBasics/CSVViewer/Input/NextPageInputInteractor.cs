@@ -3,13 +3,13 @@ namespace CSVViewer.Input;
 public class NextPageInputInteractor : IInputInteractor
 {
     public string Caption => "N)ext page";
-    public char Eingabe => 'N';
+    public char Input => 'N';
 
-    public int Execute(int aktuelleSeite, int seitenanzahl)
+    public int Execute(int currentPage, int pageCount)
     {
-        if (aktuelleSeite < seitenanzahl)
-            return aktuelleSeite + 1;
+        if (currentPage < pageCount)
+            return currentPage + 1;
         
-        return seitenanzahl;
+        return pageCount;
     }
 }

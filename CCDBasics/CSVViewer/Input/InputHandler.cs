@@ -8,6 +8,7 @@ public static class InputHandler
         new PrevPageInputInteractor(),
         new NextPageInputInteractor(),
         new LastPageInputInteractor(),
+        new JumpPageInputInteractor(),
         new ExitInputInteractor()
     };
 
@@ -21,7 +22,7 @@ public static class InputHandler
     {
         while (true)
         {
-            var kommando = Commands.FirstOrDefault(k => k.Eingabe == key);
+            var kommando = Commands.FirstOrDefault(k => k.Input == key);
             if (kommando != null)
             {
                 Console.WriteLine();

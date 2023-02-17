@@ -3,9 +3,9 @@ namespace CSVViewer.Input;
 public class ExitInputInteractor : IInputInteractor
 {
     public string Caption => "E)xit";
-    public char Eingabe => 'E';
+    public char Input => 'E';
 
-    public int Execute(int aktuelleSeite, int seitenanzahl)
+    public int Execute(int currentPage, int pageCount)
     {
         return 0;
     }
