@@ -1,8 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Text;
-using CSVViewer.Integrations;
-using CSVViewer.Operations;
+using CSVViewer.Input;
 
 namespace CSVViewer;
 
@@ -10,49 +8,23 @@ public static class Program
 {
     public static void Main(string[] args)
     {
-        var kommandoZeilenArgumentManager = new KommandozeilenArgumentManager(3);
-        var dateiname = kommandoZeilenArgumentManager.LeseDateinamen(args);
-        var seitengroesse = kommandoZeilenArgumentManager.LeseSeitengroesse(args);
+        var fileName = CommandLineArgumentInterpreter.GetFileName(args);
+        var pageSize = CommandLineArgumentInterpreter.GetPageSize(args);
 
-        var seitenanzeige = ErstelleSeitenanzeige(seitengroesse);
+        var csvFileContent = CsvFileReader.Read(fileName);
+        var pageCount = PagingHelper.GetPageCount(csvFileContent, pageSize);
 
-        var eingabeInterpreter = ErstelleEingabeInterpreter();
+        var currentPage = 1;
 
-        var aktuelleSeite = 1;
-        var seitenanzahl = 3;
-
-        while(aktuelleSeite > 0)
+        while (PagingHelper.CanShowPage(currentPage))
         {
-            seitenanzeige.ZeigeSeite(dateiname, aktuelleSeite);
-            eingabeInterpreter.ZeigeKommandos();
-            var kommando = eingabeInterpreter.NaechstesKommando();
-            aktuelleSeite = kommando.Ausfuehren(aktuelleSeite, seitenanzahl);
+            var csvPage = PageExtractor.GetPage(csvFileContent, pageSize, currentPage);
+            var formattedPage = PageFormatter.Format(csvPage);
+            PagingHelper.ShowFormattedPage(formattedPage);
+
+            InputHandler.ShowCommandList();
+            var command = InputHandler.GetNextCommand();
+            currentPage = command.Execute(currentPage, pageCount);
         }
-    }
-
-    private static CSVEinzelSeitenanzeige ErstelleSeitenanzeige(int seitengroesse)
-    {
-        var dateiLeser = new ZeilenweiseDateiLeser();
-        var kopfzeilenextraktor = new KopfzeilenExtraktor();
-        var seitenextraktor = new Seitenextraktor(seitengroesse);
-        var seitenausgabe = new Seitenausgabe();
-
-        var seitenanzeige = new CSVEinzelSeitenanzeige(dateiLeser, kopfzeilenextraktor, seitenextraktor, seitenausgabe);
-        return seitenanzeige;
-    }
-
-    private static EingabeInterpreter ErstelleEingabeInterpreter()
-    {
-        var kommandos = new IEingabeKommando[]
-        {
-            new FirstPageEingabeKommando(),
-            new PrevPageEingabeKommando(),
-            new NextPageEingabeKommando(),
-            new LastPageEingabeKommando(),
-            new ExitEingabeKommando()
-        };
-
-        var eingabeInterpreter = new EingabeInterpreter(kommandos);
-        return eingabeInterpreter;
     }
 }

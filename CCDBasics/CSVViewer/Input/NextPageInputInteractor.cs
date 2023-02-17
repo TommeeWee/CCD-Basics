@@ -1,11 +1,11 @@
-namespace CSVViewer.Operations;
+namespace CSVViewer.Input;
 
-public class NextPageEingabeKommando : IEingabeKommando
+public class NextPageInputInteractor : IInputInteractor
 {
     public string Caption => "N)ext page";
     public char Eingabe => 'N';
 
-    public int Ausfuehren(int aktuelleSeite, int seitenanzahl)
+    public int Execute(int aktuelleSeite, int seitenanzahl)
     {
         if (aktuelleSeite < seitenanzahl)
             return aktuelleSeite + 1;
