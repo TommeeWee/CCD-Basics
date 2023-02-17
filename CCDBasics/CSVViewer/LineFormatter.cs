@@ -6,11 +6,12 @@ public static class LineFormatter
 {
     public static string Format(string[] column, int[] columnLengths, char padding, char delimiter)
     {
-        var formattedLine = new StringBuilder();
+        // Mit StringBuilder gibt es hier Warnungen zur Vermischung von I und O
+        
+        var formattedLine = string.Empty;
         for (var i = 0; i < column.Length; i++)
-            formattedLine.Append(FieldFormatter.Format(column[i], columnLengths[i], padding, delimiter));
+            formattedLine += FieldFormatter.Format(column[i], columnLengths[i], padding, delimiter);
 
-
-        return formattedLine.ToString();
+        return formattedLine;
     }
 }

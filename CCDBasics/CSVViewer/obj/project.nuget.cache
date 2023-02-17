@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "8YqUoba4P5dxxO3Wodx9ciTAFlg7m5UbXH0O/N6wNroF2vP3rN4eJo5vX11QZB8M3sga2BqgGXefewDMagjOqA==",
+  "dgSpecHash": "qJh7G+0OztvKpJQVU68snSMmGWPjWkONFtv5u+tsc3wDhyfcFsiziUt2xnF0e6WnJXvu/s33Uw4y0yVNAKqzlg==",
   "success": true,
   "projectFilePath": "C:\\Users\\tomwe\\source\\repos\\CCD-Basics\\CCDBasics\\CSVViewer\\CSVViewer.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\tomwe\\.nuget\\packages\\cleancodedeveloper.analyzers\\0.0.6\\cleancodedeveloper.analyzers.0.0.6.nupkg.sha512"
+  ],
   "logs": []
 }

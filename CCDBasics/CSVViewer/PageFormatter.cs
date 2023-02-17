@@ -13,25 +13,29 @@ public static class PageFormatter
     {
         var columnLengths = GetColumnLengths(page);
 
-        var formattedPage = new StringBuilder();
-        formattedPage.AppendLine(LineFormatter.Format(page.Header, columnLengths, FieldPadding, FieldDelimiter));
+        var formattedPage = string.Empty;
+        formattedPage += LineFormatter.Format(page.Header, columnLengths, FieldPadding, FieldDelimiter);
 
-        var headerSeparator = Enumerable
-            .Range(0, page.Header.Length)
-            .Select(i => string.Empty)
-            .ToArray();
+        var headerSeparator = CreateHeaderSeparator(page);
 
-        formattedPage.AppendLine(LineFormatter.Format(
+        formattedPage += LineFormatter.Format(
             headerSeparator,
             columnLengths,
             HeaderSeparationPadding,
-            HeaderSeparationDelimiter));
+            HeaderSeparationDelimiter);
 
         foreach (var line in page.Content)
-            formattedPage.AppendLine(LineFormatter.Format(line, columnLengths, FieldPadding, FieldDelimiter));
+            formattedPage += LineFormatter.Format(line, columnLengths, FieldPadding, FieldDelimiter);
 
+        return formattedPage;
+    }
 
-        return formattedPage.ToString();
+    private static string[] CreateHeaderSeparator(CsvPage page)
+    {
+        return Enumerable
+            .Range(0, page.Header.Length)
+            .Select(i => string.Empty)
+            .ToArray();
     }
 
     private static int[] GetColumnLengths(CsvPage page)

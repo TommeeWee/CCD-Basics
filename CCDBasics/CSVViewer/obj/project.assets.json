@@ -1,11 +1,33 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "CleanCodeDeveloper.Analyzers/0.0.6": {
+        "type": "package"
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "CleanCodeDeveloper.Analyzers/0.0.6": {
+      "sha512": "pfw++73bz8+ouySr4wrdM2ldADmzfTwm7VDRz9FkDkL8q2gwBbfhCU8x66kqpvoB0fkKJEF7W3KaT+Z2mSQeIQ==",
+      "type": "package",
+      "path": "cleancodedeveloper.analyzers/0.0.6",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/CleanCodeDeveloper.Analyzers.dll",
+        "cleancodedeveloper.analyzers.0.0.6.nupkg.sha512",
+        "cleancodedeveloper.analyzers.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "CleanCodeDeveloper.Analyzers >= 0.0.6"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\tomwe\\.nuget\\packages\\": {},
@@ -51,6 +73,12 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "CleanCodeDeveloper.Analyzers": {
+            "target": "Package",
+            "version": "[0.0.6, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
