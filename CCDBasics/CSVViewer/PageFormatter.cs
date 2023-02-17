@@ -30,30 +30,28 @@ public static class PageFormatter
         return formattedPage;
     }
 
-    private static string[] CreateHeaderSeparator(CsvPage page)
+    private static CsvLine CreateHeaderSeparator(CsvPage page)
     {
-        return Enumerable
-            .Range(0, page.Header.Length)
+        return new CsvLine(Enumerable
+            .Range(0, page.FieldCount)
             .Select(i => string.Empty)
-            .ToArray();
+            .ToArray());
     }
 
     private static int[] GetColumnLengths(CsvPage page)
     {
-        var lengths = new List<int>();
+        var lengths = new int[page.FieldCount];
 
-        for (var i = 0; i < page.Header.Length; i++)
-        {
-            lengths.Add(GetColumnLength(page, i));
-        }
+        for (var i = 0; i < page.FieldCount; i++)
+            lengths[i] = GetColumnLength(page, i);
 
-        return lengths.ToArray();
+        return lengths;
     }
 
     private static int GetColumnLength(CsvPage page, int column)
     {
-        var headerLength = page.Header[column].Length;
-        var maxColumnLength = page.Content.Max(line => line[column].Length);
+        var headerLength = page.Header.Fields[column].Length;
+        var maxColumnLength = page.Content.Max(line => line.Fields[column].Length);
 
         if (headerLength > maxColumnLength)
             return headerLength;

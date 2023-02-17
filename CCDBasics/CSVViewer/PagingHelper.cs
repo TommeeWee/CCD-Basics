@@ -2,7 +2,7 @@ namespace CSVViewer;
 
 public static class PagingHelper
 {
-    public static int GetPageCount(string[][] csvFileContent, int pageSize)
+    public static int GetPageCount(CsvLine[] csvFileContent, int pageSize)
     {
         return (int)Math.Ceiling((double)(csvFileContent.Length - 1) / pageSize);
     }

@@ -17,11 +17,10 @@ public static class InputHandler
         Console.WriteLine(result);
     }
 
-    public static IInputInteractor GetNextCommand()
+    public static IInputInteractor GetNextCommand(char key)
     {
         while (true)
         {
-            var key = GetNextKey();
             var kommando = Commands.FirstOrDefault(k => k.Eingabe == key);
             if (kommando != null)
             {
@@ -31,7 +30,7 @@ public static class InputHandler
         }
     }
 
-    private static char GetNextKey()
+    public static char GetNextKey()
     {
         var key = Console.ReadKey();
         Console.Write('\b');

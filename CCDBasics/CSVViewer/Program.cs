@@ -23,7 +23,8 @@ public static class Program
             PagingHelper.ShowFormattedPage(formattedPage);
 
             InputHandler.ShowCommandList();
-            var command = InputHandler.GetNextCommand();
+            var key = InputHandler.GetNextKey();
+            var command = InputHandler.GetNextCommand(key);
             currentPage = command.Execute(currentPage, pageCount);
         }
     }

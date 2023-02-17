@@ -2,23 +2,39 @@ namespace CSVViewer;
 
 public static class PageExtractor
 {
-    public static CsvPage GetPage(string[][] csvFileContent, int pageSize, int currentPage)
+    public static CsvPage GetPage(CsvLine[] csvFileContent, int pageSize, int currentPage)
     {
         var header = csvFileContent[0];
-        var content = InternalGetPage(csvFileContent, pageSize, currentPage).ToArray();
+
+        var offset = GetPageOffset(pageSize, currentPage);
+        var lastEntry = GetLastEntry(csvFileContent.Length, offset, pageSize, currentPage);
+        
+        var content = InternalGetPage(csvFileContent, offset, lastEntry);
 
         return new CsvPage(header, content);
     }
 
-    private static IEnumerable<string[]> InternalGetPage(string[][] csvFileContent, int pageSize, int currentPage)
+    private static int GetLastEntry(int totalLines, int offset, int pageSize, int currentPage)
     {
-        var offset = 1 + ((currentPage - 1) * pageSize);
-
         var lastEntry = offset + pageSize - 1;
-        if (lastEntry > csvFileContent.Length)
-            lastEntry = csvFileContent.Length - 1;
+        if (lastEntry > totalLines)
+            lastEntry = totalLines - 1;
+        
+        return lastEntry;
+    }
+
+    private static int GetPageOffset(int pageSize, int currentPage)
+    {
+        return 1 + ((currentPage - 1) * pageSize);
+    }
+
+    private static CsvLine[] InternalGetPage(CsvLine[] csvFileContent, int offset, int lastEntry)
+    {
+        var result = new List<CsvLine>();
 
         for (var i = offset; i <= lastEntry; i++)
-            yield return csvFileContent[i];
+            result.Add(csvFileContent[i]);
+
+        return result.ToArray();
     }
 }

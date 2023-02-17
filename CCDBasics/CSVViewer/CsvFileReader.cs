@@ -1,18 +1,20 @@
+using System.Xml.XPath;
+
 namespace CSVViewer;
 
 public static class CsvFileReader
 {
     private const char Delimiter = ';';
 
-    public static string[][] Read(string fileName)
-    {
-        return InternalRead(fileName).ToArray();
-    }
-
-    public static IEnumerable<string[]> InternalRead(string fileName)
+    public static CsvLine[] Read(string fileName)
     {
         var lines = File.ReadLines(fileName);
+
+        var result = new List<CsvLine>();
+
         foreach (var line in lines)
-            yield return line.Split(Delimiter);
+            result.Add(new CsvLine(line.Split(Delimiter)));
+
+        return result.ToArray();
     }
 }
