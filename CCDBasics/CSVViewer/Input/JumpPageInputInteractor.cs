@@ -11,7 +11,7 @@ public class JumpPageInputInteractor : IInputInteractor
         return pageNo; 
     }
 
-    private int KeepNumberInBounds(int page, int pageCount)
+    private static int KeepNumberInBounds(int page, int pageCount)
     {
         if (page < 1)
             return 1;
@@ -22,7 +22,7 @@ public class JumpPageInputInteractor : IInputInteractor
         return page;
     }
 
-    public int ReadNumberFromConsole()
+    private static int ReadNumberFromConsole()
     {
         while (true)
         {

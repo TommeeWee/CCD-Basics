@@ -18,7 +18,7 @@ public static class Program
 
         while (PagingHelper.CanShowPage(currentPage))
         {
-            var csvPage = PageExtractor.GetPage(csvFileContent, pageSize, currentPage);
+            var csvPage = PageExtractor.GetPage(csvFileContent, pageSize, currentPage, pageCount);
             var formattedPage = PageFormatter.Format(csvPage);
             PagingHelper.ShowFormattedPage(formattedPage);
 

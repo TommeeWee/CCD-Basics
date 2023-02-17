@@ -2,7 +2,7 @@ namespace CSVViewer;
 
 public static class PageExtractor
 {
-    public static CsvPage GetPage(CsvLine[] csvFileContent, int pageSize, int currentPage)
+    public static CsvPage GetPage(CsvLine[] csvFileContent, int pageSize, int currentPage, int totalPages)
     {
         var header = csvFileContent[0];
 
@@ -11,7 +11,7 @@ public static class PageExtractor
         
         var content = InternalGetPage(csvFileContent, offset, lastEntry);
 
-        return new CsvPage(header, content);
+        return new CsvPage(header, content, currentPage, totalPages);
     }
 
     private static int GetLastEntry(int totalLines, int offset, int pageSize, int currentPage)

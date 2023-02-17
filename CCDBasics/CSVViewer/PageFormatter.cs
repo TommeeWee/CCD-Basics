@@ -27,7 +27,13 @@ public static class PageFormatter
         foreach (var line in page.Content)
             formattedPage = AppendLine(formattedPage, LineFormatter.Format(line, columnLengths, FieldPadding, FieldDelimiter));
 
+        formattedPage = AppendLine(formattedPage, PageSummary(page.PageNo, page.TotalPages));
         return formattedPage;
+    }
+
+    private static string PageSummary(int pageNo, int totalPages)
+    {
+        return $"Page {pageNo} of {totalPages}";
     }
 
     private static CsvLine CreateHeaderSeparator(CsvPage page)
