@@ -5,10 +5,8 @@ public class FirstPageInputInteractor : IInputInteractor
     public string Caption => "F)irst page";
     
     public char Input => 'F';
-    
-    
-    public int Execute(int currentPage, int pageCount)
+    public CsvViewerModel Execute(CsvViewerModel model)
     {
-        return 1;
+        return model with { CurrentPage = 1 };
     }
 }

@@ -4,9 +4,8 @@ public class ExitInputInteractor : IInputInteractor
 {
     public string Caption => "E)xit";
     public char Input => 'E';
-
-    public int Execute(int currentPage, int pageCount)
+    public CsvViewerModel Execute(CsvViewerModel model)
     {
-        return 0;
+        return model with { ExitApplication = true};
     }
 }

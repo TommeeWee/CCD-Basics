@@ -4,10 +4,8 @@ public class LastPageInputInteractor : IInputInteractor
 {
     public string Caption => "L)ast page";
     public char Input => 'L';
-
-    public int Execute(int currentPage, int pageCount)
+    public CsvViewerModel Execute(CsvViewerModel model)
     {
-        return pageCount;
-
+        return model with { CurrentPage = model.PageCount };
     }
 }

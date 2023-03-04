@@ -6,18 +6,33 @@ public static class CsvFileReader
 {
     private const char Delimiter = ';';
 
+    public static CsvFile ReadCsvFromFile(string file)
+    {
+        var lines = ReadLinesFromFile(file);
+        var csvLines = ConvertToCsvLines(lines);
+        var header = csvLines[0];
+        var rows = GetRows(csvLines);
+
+        return new CsvFile(header, rows);
+    }
+
+    private static CsvLine[] GetRows(CsvLine[] csvLines)
+    {
+        return csvLines.Skip(1).ToArray();
+    }
+
     public static CsvLine[] ReadCsvLinesFromFile(string file)
     {
         var lines = ReadLinesFromFile(file);
         return ConvertToCsvLines(lines);
     }
-    
-    public static string[] ReadLinesFromFile(string fileName)
+
+    private static string[] ReadLinesFromFile(string fileName)
     {
         return File.ReadLines(fileName).ToArray();
     }
-    
-    public static CsvLine[] ConvertToCsvLines(string[] lines)
+
+    private static CsvLine[] ConvertToCsvLines(string[] lines)
     {
         var result = new CsvLine[lines.Length];
 
@@ -36,7 +51,13 @@ public static class CsvFileReader
 
     private static string[] GetFields(string line)
     {
-        return line.Split(Delimiter);
+        var fields = line.Split(Delimiter);
+
+        for (int i = 0; i < fields.Length; i++)
+        {
+            fields[i] = fields[i].Trim();
+        }
+
+        return fields;
     }
 }
-

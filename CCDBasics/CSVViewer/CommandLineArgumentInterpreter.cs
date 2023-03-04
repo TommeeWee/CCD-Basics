@@ -5,16 +5,16 @@ public static class CommandLineArgumentInterpreter
     private const int DefaultPageSize = 3;
 
 
-    public static string GetFileName(string[] argumente)
+    public static string GetFileName(string[] arguments)
     {
-        return argumente[0];
+        return arguments[0];
     }
 
-    public static int GetPageSize(string[] argumente)
+    public static int GetPageSize(string[] arguments)
     {
-        if (argumente.Length < 2)
+        if (arguments.Length < 2)
             return DefaultPageSize;
 
-        return int.Parse(argumente[1]);
+        return int.Parse(arguments[1]);
     }
 }

@@ -11,21 +11,21 @@ public static class Program
         var fileName = CommandLineArgumentInterpreter.GetFileName(args);
         var pageSize = CommandLineArgumentInterpreter.GetPageSize(args);
 
-        var csvFileContent = CsvFileReader.ReadCsvLinesFromFile(fileName);
-        var pageCount = PagingHelper.GetPageCount(csvFileContent, pageSize);
+        var csvFile = CsvFileReader.ReadCsvFromFile(fileName);
+        var pageCount = PagingHelper.GetPageCount(csvFile, pageSize);
 
-        var currentPage = 1;
-
-        while (PagingHelper.CanShowPage(currentPage))
+        var model = new CsvViewerModel(csvFile, pageSize, pageCount, 1, false);
+        
+        while (!model.ExitApplication)
         {
-            var csvPage = PageExtractor.GetPage(csvFileContent, pageSize, currentPage, pageCount);
+            var csvPage = PageExtractor.GetPage(model);
             var formattedPage = PageFormatter.Format(csvPage);
             PagingHelper.ShowFormattedPage(formattedPage);
 
             InputHandler.ShowCommandList();
             var key = InputHandler.GetNextKey();
             var command = InputHandler.GetNextCommand(key);
-            currentPage = command.Execute(currentPage, pageCount);
+            model = command.Execute(model);
         }
     }
 }

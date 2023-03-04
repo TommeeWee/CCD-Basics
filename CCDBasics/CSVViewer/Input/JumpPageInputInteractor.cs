@@ -4,11 +4,11 @@ public class JumpPageInputInteractor : IInputInteractor
 {
     public string Caption => "J)ump to page";
     public char Input => 'J';
-    public int Execute(int currentPage, int pageCount)
+    public CsvViewerModel Execute(CsvViewerModel model)
     {
         var newPage = ReadNumberFromConsole();
-        var pageNo = KeepNumberInBounds(newPage, pageCount);
-        return pageNo; 
+        var pageNo = KeepNumberInBounds(newPage, model.PageCount);
+        return model with { CurrentPage = pageNo };
     }
 
     private static int KeepNumberInBounds(int page, int pageCount)

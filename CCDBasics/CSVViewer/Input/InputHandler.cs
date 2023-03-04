@@ -2,13 +2,14 @@ namespace CSVViewer.Input;
 
 public static class InputHandler
 {
-    public static readonly IInputInteractor[] Commands = new IInputInteractor[]
+    private static readonly IInputInteractor[] Commands = new IInputInteractor[]
     {
         new FirstPageInputInteractor(),
         new PrevPageInputInteractor(),
         new NextPageInputInteractor(),
         new LastPageInputInteractor(),
         new JumpPageInputInteractor(),
+        new SortPageInputInteractor(),
         new ExitInputInteractor()
     };
 
@@ -22,11 +23,11 @@ public static class InputHandler
     {
         while (true)
         {
-            var kommando = Commands.FirstOrDefault(k => k.Input == key);
-            if (kommando != null)
+            var command = Commands.FirstOrDefault(k => k.Input == key);
+            if (command != null)
             {
                 Console.WriteLine();
-                return kommando;
+                return command;
             }
         }
     }
