@@ -1,4 +1,4 @@
-namespace CSVViewer;
+namespace CSVViewer.Models;
 
 public record CsvFile(CsvLine Header, CsvLine[] Rows)
 {

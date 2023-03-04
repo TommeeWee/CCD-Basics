@@ -1,4 +1,4 @@
-namespace CSVViewer;
+namespace CSVViewer.Models;
 
 public record CsvPage(CsvLine Header, CsvLine[] Content, int PageNo, int TotalPages)
 {

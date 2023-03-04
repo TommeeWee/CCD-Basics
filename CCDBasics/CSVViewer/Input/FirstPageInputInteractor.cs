@@ -1,3 +1,5 @@
+using CSVViewer.Models;
+
 namespace CSVViewer.Input;
 
 public class FirstPageInputInteractor : IInputInteractor

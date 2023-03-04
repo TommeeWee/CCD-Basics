@@ -1,3 +1,5 @@
+using CSVViewer.Models;
+
 namespace CSVViewer;
 
 public static class PagingHelper
